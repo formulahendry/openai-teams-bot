@@ -7,14 +7,17 @@ import {
 } from "botbuilder";
 import rawWelcomeCard from "./adaptiveCards/welcome.json";
 import { AdaptiveCards } from "@microsoft/adaptivecards-tools";
-
-export interface DataInterface {
-  likeCount: number;
-}
+import { Configuration, OpenAIApi } from "openai";
+import config from "./config";
 
 export class TeamsBot extends TeamsActivityHandler {
   constructor() {
     super();
+
+    const configuration = new Configuration({
+      apiKey: config.openaiApiKey,
+    });
+    const openai = new OpenAIApi(configuration);
 
     this.onMessage(async (context, next) => {
       console.log("Running with Message Activity.");
@@ -26,7 +29,14 @@ export class TeamsBot extends TeamsActivityHandler {
         txt = removedMentionText.toLowerCase().replace(/\n|\r/g, "").trim();
       }
 
-      await context.sendActivity(txt);
+      const response = await openai.createCompletion({
+        model: "text-davinci-003",
+        prompt: txt,
+        temperature: 0,
+        max_tokens: 2048,
+      });
+
+      await context.sendActivity(response.data.choices[0].text);
 
       // By calling next() you ensure that the next BotHandler is run.
       await next();
