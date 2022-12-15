@@ -8,3 +8,4 @@ subscriptionInfo.json
 build
 .fx/configs/config.local.json
 .fx/states/state.local.json
+.fx/states/state.*.json

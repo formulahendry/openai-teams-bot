@@ -6,6 +6,7 @@
       "value": {
         "botAadAppClientId": "{{state.teams-bot.botId}}",
         "botAadAppClientSecret": "{{state.teams-bot.botPassword}}",
+        "openaiApiKey": "{{$env.OPENAI_API_KEY}}",
         "resourceBaseName": "openaiteam2ab769"
       }
     }
