@@ -1,6 +1,8 @@
 # How to use this OpenAI Teams Bot app
 
-This is An OpenAI Teams Bot app to let you chat with OpenAI API in Microsoft Teams.
+This is an OpenAI Teams Bot app to let you chat with OpenAI API in Microsoft Teams.
+
+It has similar experience of ChatGPT Teams Bot app. Both of them are based on GPT-3 model.
 
 ![OpenAI](./images/openai-chat.png)
 
